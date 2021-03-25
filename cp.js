@@ -6,6 +6,8 @@ Gestion d'erreur si src.txt n'existe pas. */
 const fs = require('fs') // Importe tout le module FS
 const { copyFileSync } = require('fs')
 
+const srcPath = `./${process.argv[2]}`
+
 // Vérifier la command line
 if (process.argv.length !==4) {
     console.log(`usage: node cp.js src.txt dst.txt`)
@@ -16,6 +18,18 @@ if (process.argv.length !==4) {
 if (!fs.existsSync(process.argv[2])) {
     console.log(`Error: ${process.argv[2]} does not exist`)
     process.exit(1)
+}
+
+if(!fs.existsSync(srcPath)){
+    console.log(`Error: srcFile does not exist`)
+    process.exit(1)
+}
+
+let srcTest = fs.statSync(srcPath)
+
+if (!srcTest.isFile()) {
+  console.log(`Error: ${process.argv[2]} is not a file`)
+  process.exit(1)
 }
 
 let copy = copyFileSync('./src.txt', './dst.txt')

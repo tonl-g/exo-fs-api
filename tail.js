@@ -17,6 +17,11 @@ if (!fs.existsSync(process.argv[2])) {
     process.exit(1)
 }
 
-let lastContent = fs.readFileSync(process.argv[2], 'utf-8')
+let array = fs.readFileSync('file.txt').toString().split(" ")
+for(i in array) { 
+    console.log(array[i])
+}
 
-console.log(lastContent)
+// let lastContent = fs.readFileSync(process.argv[2], 'utf-8')
+
+// console.log(lastContent)

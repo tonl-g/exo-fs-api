@@ -4,13 +4,14 @@ node echo.js hello hard fork
 hello hard fork
 Affiche à l'écran les strings passées en arguments. */
 
-if (process.argv.length !==5) {
-    console.log(`usage: node echo.js hello hard folk`)
+// Vérifier la command line 
+if (process.argv.length === 2){
+    console.log(`Error: node echo.js and write something`)
     process.exit(1)
-    }
+}
 
-let str1 = (process.argv[2])
-let str2 = (process.argv[3])
-let str3 = (process.argv[4])
-
-console.log(`${str1} ${str2} ${str3}`)
+let str = ' '
+for(let i = 2; i < process.argv.length; ++i) {
+  str += ` ${process.argv[i]}`
+}
+console.log(str.trim())
