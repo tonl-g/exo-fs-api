@@ -10,4 +10,21 @@ Gestion de l'erreur si l'un des fichiers sources à copier n'existe pas. */
 
 const fs = require('fs')
 const { readFileSync } = require('fs')
+const { copyFileSync } = require('fs')
+
+const TAB = []
+
+// Read le contenu des file.txt => un array
+for (let i = 2; i < process.argv.length -1; ++i) {
+    TAB.push(fs.readFileSync(process.argv[i], 'utf-8'))
+    console.log(TAB)
+}
+
+// TAB => str
+const str = TAB.join('\n')
+console.log(str)
+
+
+
+
 

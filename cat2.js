@@ -8,7 +8,7 @@ Gestion de l'erreur si l'un des fichiers à afficher n'existe pas. */
 const fs = require('fs')
 const { readFileSync } = require('fs')
 
-const PATH = './'
+const PATH = './' // Pour le directory .txt
 
 // Check si + de 2 arguments minimum
 if (process.argv.length === 2) {
@@ -19,7 +19,7 @@ if (process.argv.length === 2) {
 // Check si .txt existent
 for (let i = 2; i < process.argv.length; ++i) {
     path = `./${process.argv[i]}`
-    if (!fs.existsSync(process.argv[i])) {
+    if (!fs.existsSync(process.argv[i])) { // ExistsSync
     console.log(`Error: ${process.argv[i]} Such a file does not exist`)
     process.exit(1)
 }
