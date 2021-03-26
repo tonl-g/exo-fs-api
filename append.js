@@ -8,3 +8,6 @@ node append.js src1.txt src2.txt dst.txt
 Gestion de l'erreur si pas le bon nombre d'arguments.
 Gestion de l'erreur si l'un des fichiers sources à copier n'existe pas. */
 
+const fs = require('fs')
+const { readFileSync } = require('fs')
+
