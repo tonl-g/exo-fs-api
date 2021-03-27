@@ -10,21 +10,26 @@ Gestion de l'erreur si l'un des fichiers sources à copier n'existe pas. */
 
 const fs = require('fs')
 const { readFileSync } = require('fs')
+const { writeFileSync } = require('fs')
 const { copyFileSync } = require('fs')
 
-const TAB = []
-
-// Read le contenu des file.txt => un array
-for (let i = 2; i < process.argv.length -1; ++i) {
-    TAB.push(fs.readFileSync(process.argv[i], 'utf-8'))
-    console.log(TAB)
+// Check si + de 2 arguments minimum
+if (process.argv.length === 3) {
+    console.log(`usage: node append.js src1.txt... dst.txt`)
+    process.exit(1) 
 }
 
-// TAB => str
-const str = TAB.join('\n')
-console.log(str)
+// Check si .txt existent
+for (let i = 2; i < process.argv.length; ++i) {
+    path = `./${process.argv[i]}`
+    if (!fs.existsSync(process.argv[i])) { // ExistsSync
+    console.log(`Error: ${process.argv[i]} Such a file does not exist`)
+    process.exit(1)
+}
+}
 
-
-
-
+// Copy les contenus des src.txt dans dst.txt
+for (let i = 2; i < process.argv.length; ++i) {
+    const copyAll = fs.copyFileSync(process.argv[i], './dst.txt') // Ne copie que le dernier src.txt
+}
 

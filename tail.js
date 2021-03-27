@@ -20,6 +20,6 @@ if (!fs.existsSync(process.argv[2])) {
 
 // Read le 10 dernières lignes du contenu du file.txt
 const content = fs.readFileSync('file.txt', 'utf-8') // Read
-const lastLine = content.split(`\n`) // Array
-const str = lastLine.join('\n') // Array => str
+const last10Line = content.split(`\n`) // Array
+const str = last10Line.join('\n') // Array => str
 console.log(str.slice((str.length)-20))
