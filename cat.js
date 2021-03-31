@@ -23,6 +23,13 @@ if (!stats.isFile()) {
     console.log(`Error: ${process.argv[2]} is not a file`)
     process.exit(1)
 }
+// Check si c'est bien un fichier 
+const stats = fs.statSync(process.argv[2])
+if (!stats.isFile()) {
+    console.log(`Error: ${process.argv[2]} is not a file`)
+    process.exit(1)
+}
+
 // Read le contenu du file.txt
 const content = fs.readFileSync(process.argv[2], 'utf-8')
 

@@ -18,8 +18,14 @@ if (!fs.existsSync(process.argv[2])) {
     process.exit(1)
 }
 
+// Check si c'est bien un fichier 
+const stats = fs.statSync(process.argv[2])
+if (!stats.isFile()) {
+    console.log(`Error: ${process.argv[2]} is not a file`)
+    process.exit(1)
+}
+
 // Read le 10 dernières lignes du contenu du file.txt
-const content = fs.readFileSync('file.txt', 'utf-8') // Read
-const last10Line = content.split(`\n`) // Array
-const str = last10Line.join('\n') // Array => str
-console.log(str.slice((str.length)-20))
+let last10Lines = 10
+const content = readFileSync(process.argv[2], 'utf-8').split('\n').slice(-last10Lines).join('\n')
+console.log(content)
