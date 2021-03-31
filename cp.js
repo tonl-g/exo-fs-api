@@ -18,8 +18,17 @@ if (!fs.existsSync(process.argv[2])) {
     process.exit(1)
 }
 
+// Check si c'est bien un fichier 
+const stats = fs.statSync(process.argv[2])
+if (!stats.isFile()) {
+    for (let i = 2; i < process.argv.length; ++i) {
+    console.log(`Error: ${process.argv[i]} is not a file`)
+    process.exit(1)
+}
+}
+
 // Copy src.txt dans dst.txt
-const copyFile = copyFileSync('./src.txt', './dst.txt')
+const copyFile = fs.copyFileSync(process.argv[2], process.argv[3])
 
 console.log('Le contenu de src.txt à bien été copié dans dst.txt')
 

@@ -8,25 +8,31 @@ Gestion de l'erreur si l'un des fichiers à afficher n'existe pas. */
 const fs = require('fs')
 const { readFileSync } = require('fs')
 
-const PATH = './' // Pour le directory .txt
-
 // Check si + de 2 arguments minimum
-if (process.argv.length === 2) {
+if (process.argv.length < 3) {
     console.log(`usage: node cat2.js .txt and something .txt`)
     process.exit(1) 
 }
 
 // Check si .txt existent
 for (let i = 2; i < process.argv.length; ++i) {
-    path = `./${process.argv[i]}`
     if (!fs.existsSync(process.argv[i])) { // ExistsSync
     console.log(`Error: ${process.argv[i]} Such a file does not exist`)
     process.exit(1)
 }
 }
 
+// Check si c'est bien un fichier 
+const stats = fs.statSync(process.argv[2])
+if (!stats.isFile()) {
+    for (let i = 2; i < process.argv.length; ++i) {
+    console.log(`Error: ${process.argv[i]} is not a file`)
+    process.exit(1)
+}
+}
+
 // Read le contenu des file.txt
 for (let i = 2; i < process.argv.length; ++i) {
-    const content = readFileSync(process.argv[i], 'utf-8')
+    const content = fs.readFileSync(process.argv[i], 'utf-8')
 console.log(content)
 }

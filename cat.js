@@ -17,7 +17,13 @@ if (!fs.existsSync(process.argv[2])) {
     process.exit(1)
 }
 
+// Check si c'est bien un fichier 
+const stats = fs.statSync(process.argv[2])
+if (!stats.isFile()) {
+    console.log(`Error: ${process.argv[2]} is not a file`)
+    process.exit(1)
+}
 // Read le contenu du file.txt
-const content = readFileSync('./file.txt', 'utf-8')
+const content = fs.readFileSync(process.argv[2], 'utf-8')
 
 console.log(content)
